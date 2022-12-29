@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import { InformationCircleIcon } from "@heroicons/react/outline";
 import { FaPlay } from "react-icons/fa";
+import { useRecoilState } from "recoil";
+import { DocumentData } from "firebase/firestore";
 import Image from "next/image";
 
+import { movieState } from "../atom/movieAtom";
+import { modalState } from "../atom/modalAtom";
 import { baseUrl } from "../constants/movie";
 
 interface Props {
@@ -10,13 +14,22 @@ interface Props {
 }
 
 const Banner: React.FC<Props> = ({ netflixOriginals }) => {
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const [movie, setMovie] = useState<Movie | null | DocumentData>(null);
+
+  const [currentMovie, setCurrentMovie] = useRecoilState(movieState);
+
+  const [showModal, setShowModal] = useRecoilState(modalState);
 
   useEffect(() => {
     setMovie(
       netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]
     );
   }, [netflixOriginals]);
+
+  const handleClick = () => {
+    setShowModal(true);
+    setCurrentMovie(movie);
+  };
 
   return (
     <section
@@ -42,7 +55,7 @@ const Banner: React.FC<Props> = ({ netflixOriginals }) => {
           <FaPlay className="h-4 w-4 text-black md:h-7 md:w-7" />
           Play
         </button>
-        <button className="bannerButton bg-[gray]/70">
+        <button onClick={handleClick} className="bannerButton bg-[gray]/70">
           <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" />
           More Info
         </button>
