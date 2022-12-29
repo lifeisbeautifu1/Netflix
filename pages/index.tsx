@@ -6,14 +6,14 @@ import { Header, Banner, Row, Modal } from "../components";
 import { modalState } from "../atom/modalAtom";
 import { requests } from "../utils/requests";
 
-import netflixOriginals from "../data/netflixOriginals.json";
-import topRated from "../data/topRated.json";
-import trendingNow from "../data/trendingNow.json";
-import actionMovies from "../data/actionMovies.json";
-import comedyMovies from "../data/comedyMovies.json";
-import horrorMovies from "../data/horrorMovies.json";
-import romanceMovies from "../data/romanceMovies.json";
-import documentaries from "../data/documentaries.json";
+// import netflixOriginals from "../data/netflixOriginals.json";
+// import topRated from "../data/topRated.json";
+// import trendingNow from "../data/trendingNow.json";
+// import actionMovies from "../data/actionMovies.json";
+// import comedyMovies from "../data/comedyMovies.json";
+// import horrorMovies from "../data/horrorMovies.json";
+// import romanceMovies from "../data/romanceMovies.json";
+// import documentaries from "../data/documentaries.json";
 
 interface Props {
   netflixOriginals: Movie[];
@@ -72,25 +72,25 @@ const Home: NextPage<Props> = ({
 export default Home;
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  // const [
-  //   netflixOriginals,
-  //   trendingNow,
-  //   topRated,
-  //   actionMovies,
-  //   comedyMovies,
-  //   horrorMovies,
-  //   romanceMovies,
-  //   documentaries,
-  // ] = await Promise.all([
-  //   fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
-  //   fetch(requests.fetchTrending).then((res) => res.json()),
-  //   fetch(requests.fetchTopRated).then((res) => res.json()),
-  //   fetch(requests.fetchActionMovies).then((res) => res.json()),
-  //   fetch(requests.fetchComedyMovies).then((res) => res.json()),
-  //   fetch(requests.fetchHorrorMovies).then((res) => res.json()),
-  //   fetch(requests.fetchRomanceMovies).then((res) => res.json()),
-  //   fetch(requests.fetchDocumentaries).then((res) => res.json()),
-  // ]);
+  const [
+    netflixOriginals,
+    trendingNow,
+    topRated,
+    actionMovies,
+    comedyMovies,
+    horrorMovies,
+    romanceMovies,
+    documentaries,
+  ] = await Promise.all([
+    fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
+    fetch(requests.fetchTrending).then((res) => res.json()),
+    fetch(requests.fetchTopRated).then((res) => res.json()),
+    fetch(requests.fetchActionMovies).then((res) => res.json()),
+    fetch(requests.fetchComedyMovies).then((res) => res.json()),
+    fetch(requests.fetchHorrorMovies).then((res) => res.json()),
+    fetch(requests.fetchRomanceMovies).then((res) => res.json()),
+    fetch(requests.fetchDocumentaries).then((res) => res.json()),
+  ]);
   return {
     props: {
       netflixOriginals: netflixOriginals.results,
