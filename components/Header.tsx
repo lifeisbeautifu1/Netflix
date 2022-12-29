@@ -28,7 +28,7 @@ const Header = () => {
     <header className={`${isScrolled && "bg-[#141414]"}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
         <img
-          src="https://rb.gy/ulxxee"
+          src="/logo.svg"
           alt="Logo"
           width={100}
           height={100}
@@ -49,7 +49,7 @@ const Header = () => {
         {/* <Link href="/account"> */}
         <img
           onClick={logout}
-          src="https://rb.gy/g1pwyx"
+          src="/avatar.png"
           alt="avatar"
           className="cursor-pointer rounded"
         />
