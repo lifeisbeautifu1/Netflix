@@ -8,7 +8,7 @@ import { RecoilRoot } from "recoil";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      <Toaster />
+      <Toaster position="bottom-center" />
       <RecoilRoot>
         <Component {...pageProps} />
       </RecoilRoot>

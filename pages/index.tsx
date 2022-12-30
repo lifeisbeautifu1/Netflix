@@ -1,10 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 import { Header, Banner, Row, Modal } from "../components";
 import { modalState } from "../atom/modalAtom";
 import { requests } from "../utils/requests";
+import useList from "../hooks/useList";
+import useAuth from "../hooks/useAuth";
 
 // import netflixOriginals from "../data/netflixOriginals.json";
 // import topRated from "../data/topRated.json";
@@ -36,7 +38,9 @@ const Home: NextPage<Props> = ({
   romanceMovies,
   documentaries,
 }) => {
-  const showModal = useRecoilValue(modalState);
+  const [showModal] = useRecoilState(modalState);
+  const { user } = useAuth();
+  const list = useList(user?.uid);
   return (
     <div
       className={`relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh] ${
@@ -58,13 +62,14 @@ const Home: NextPage<Props> = ({
           <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
+          {list.length > 0 && <Row title="My List" movies={list} />}
           <Row title="Comedies" movies={comedyMovies} />
           <Row title="Scary Movies" movies={horrorMovies} />
           <Row title="Romance Movies" movies={romanceMovies} />
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      <Modal />
+      {showModal && <Modal />}
     </div>
   );
 };

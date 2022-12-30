@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { SearchIcon, BellIcon } from "@heroicons/react/solid";
 import useAuth from "../hooks/useAuth";
+
+import { BasicMenu } from "./";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,6 +42,7 @@ const Header = () => {
           <li className="headerLink">New &amp; Popular</li>
           <li className="headerLink">My List</li>
         </ul>
+        <BasicMenu />
       </div>
       <div className="flex items-center space-x-4 text-sm font-light">
         <SearchIcon className="hidden cursor-pointer h-6 w-6 sm:inline" />

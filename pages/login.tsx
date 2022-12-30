@@ -44,7 +44,7 @@ const Login = () => {
         objectFit="cover"
       />
       <img
-        src="https://rb.gy/ulxxee"
+        src="/logo.svg"
         alt="logo"
         width={150}
         height={150}
