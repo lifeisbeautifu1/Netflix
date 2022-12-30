@@ -8,6 +8,7 @@ export default function BasicMenu() {
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // @ts-ignore
     setAnchorEl(event.currentTarget);
   };
 
