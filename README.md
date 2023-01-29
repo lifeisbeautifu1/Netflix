@@ -6,8 +6,6 @@ Netflix clone build with Next.js
 
 Next.js Firebase Typescript TailwindCSS TMDB API
 
-[Live demo](https://netflix-plum-eight.vercel.app)
-
 ### Screenshots
 
 [Imgur](https://imgur.com/a/jj1yE2s)
